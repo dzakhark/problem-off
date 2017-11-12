@@ -6,12 +6,13 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class LoginService {
+export class AuthService {
   private urlLogIn = 'https://problemoff.herokuapp.com/api/login';
   private urlUsers = 'https://problemoff.herokuapp.com/users';
+  isLogin: boolean = this.checkLogin();
   constructor(private http: Http) { }
 
-  onLogin(user: LoginUser) {
+  onLogIn(user: LoginUser) {
     const params = new URLSearchParams();
     params.set('email', user.login);
     params.set('password', user.password);
@@ -49,5 +50,23 @@ export class LoginService {
     console.error(message);
 
     return Observable.throw(message);
+  }
+
+  checkLogin() {
+    // console.log(localStorage.getItem('currentUser'));
+    if (localStorage.getItem('currentUser')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  writeDownLogin() {
+    this.isLogin = this.checkLogin();
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.isLogin = this.checkLogin();
   }
 }

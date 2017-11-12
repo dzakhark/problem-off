@@ -8,13 +8,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
         </li>
       </ul>
 
-      <div class="my-0 my-lg-0">
+      <div *ngIf="!authService.isLogin" class="my-0 my-lg-0">
         <!--<a class="btn btn-outline-dark" routerLink="/login" data-toggle="collapse" data-target=".navbar-collapse.show">Log in</a>-->
         <button class="btn btn-outline-dark" (click)="goToLogin()" data-toggle="collapse" data-target=".navbar-collapse.show">Log in</button>
+      </div>
+      <div *ngIf="authService.isLogin" class="my-0 my-lg-0">
+        <!--<a class="btn btn-outline-dark" routerLink="/login" data-toggle="collapse" data-target=".navbar-collapse.show">Log in</a>-->
+        <button class="btn btn-outline-dark" (click)="logout()" data-toggle="collapse" data-target=".navbar-collapse.show">Log out</button>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginUser } from '../shared/classes/loginUser';
-import { LoginService } from '../shared/services/login.service';
+import {AuthService} from '../shared/services/auth.service';
 // import {LoginUser1, LoginUserBuilder} from '../shared/classes/loginUserBuilder';
 
 @Component({
@@ -11,13 +11,14 @@ import { LoginService } from '../shared/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  isDisable = false;
   loginForm: FormGroup;
   // loginInfo: LoginUser1 = new LoginUserBuilder().login('8').password('5');
   loginInfo: LoginUser = new LoginUser('', '');
   loginError = false;
   constructor(private router: Router,
               private fb: FormBuilder,
-              private service: LoginService) { }
+              private service: AuthService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -33,28 +34,32 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.loginForm.invalid) {
       event.preventDefault();
-      // console.log(this.loginForm.invalid);
       this.loginError = true;
     } else {
-      // const infLogin: LoginUser = new LoginUser(this.loginForm.value.login, this.loginForm.value.password);
       this.loginInfo.login = this.loginForm.value.login;
       this.loginInfo.password = this.loginForm.value.password;
-      this.service.onLogin(this.loginInfo).subscribe(
+      this.service.onLogIn(this.loginInfo).subscribe(
         (responce) => {
           this.loginError = false;
           const token = responce.headers.get('X-Auth-Token');
           localStorage.setItem('currentUser', JSON.stringify({token: token }));
-          console.log(token);
+          this.service.writeDownLogin();
+          // console.log(this.service.isLogin);
+          // console.log(token);
           this.service.getUser().subscribe(
             (res) => {
-              console.log(res);
+              // console.log(res);
+              this.isDisable = true;
               this.goToHome();
             },
-            (error) => console.log(error)
+            (error) => {
+              console.log(error);
+              this.isDisable = false;
+            }
           );
         },
         error => {
-          console.log(error);
+          // console.log(error);
           this.loginInfo.password = '';
           this.buildForm();
           this.loginError = true;

@@ -10,8 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  regisForm: FormGroup;
+  public mask = ['(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  isInvalidForm = false;
   isRegistrationError = false;
+  regisForm: FormGroup;
   formErrors = {
     'firstName': '',
     'lastName': '',
@@ -32,7 +34,7 @@ export class RegistrationComponent implements OnInit {
     },
     'password': {
       'required': '* Обязательное поле.',
-      'minlength': '* minlength password'
+      'minlength': '* minlength password 8'
     },
     'phone': {
       'required': '* Обязательное поле.',
@@ -60,8 +62,7 @@ export class RegistrationComponent implements OnInit {
         Validators.minLength(8)
       ]],
       'phone': ['', [
-        Validators.required,
-        Validators.pattern('\\d+')
+        Validators.required
       ]]
     });
 
@@ -73,11 +74,10 @@ export class RegistrationComponent implements OnInit {
     let form = this.regisForm;
 
     for (let field in this.formErrors) {
+      this.isInvalidForm = false;
       this.formErrors[field] = '';
-      // form.get - получение элемента управления
       let control = form.get(field);
-
-      if (control && control.dirty && !control.valid) {
+      if (control && control.dirty && !control.valid ) {
         let message = this.validationMessages[field];
         for (let key in control.errors) {
           this.formErrors[field] += message[key] + ' ';
@@ -88,7 +88,7 @@ export class RegistrationComponent implements OnInit {
 
   onRegistration(event) {
     if (this.regisForm.invalid) {
-      console.log('bla');
+      this.isInvalidForm = true;
       event.preventDefault();
     } else {
       const newUser = new RegisUser(this.regisForm.value.firstName,
@@ -98,7 +98,6 @@ export class RegistrationComponent implements OnInit {
                                     this.regisForm.value.phone);
       this.service.registerUser(newUser).subscribe(
         () => {
-          // console.log('bla bla');
           this.isRegistrationError = false;
           this.router.navigate(['/login']);
         },
@@ -108,8 +107,6 @@ export class RegistrationComponent implements OnInit {
         }
       );
       console.log('submitted');
-      // console.log(this.regisForm.valid);
-      // console.log(this.regisForm.value);
     }
   }
 }

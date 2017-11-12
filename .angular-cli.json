@@ -63,6 +63,7 @@
     "class": {
       "spec": false
     },
-    "component": {}
+    "component": {
+    }
   }
 }

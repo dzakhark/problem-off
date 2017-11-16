@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginUser } from '../shared/classes/loginUser';
-import {AuthService} from '../shared/services/auth.service';
-// import {LoginUser1, LoginUserBuilder} from '../shared/classes/loginUserBuilder';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -38,25 +37,30 @@ export class LoginComponent implements OnInit {
     } else {
       this.loginInfo.login = this.loginForm.value.login;
       this.loginInfo.password = this.loginForm.value.password;
+      this.isDisable = true;
       this.service.onLogIn(this.loginInfo).subscribe(
         (responce) => {
           this.loginError = false;
+          // console.log(JSON.parse(responce['_body']).roles);
+          this.service.roles = JSON.parse(responce['_body']).roles;
+          // console.log(JSON.stringify(this.service.roles));
+          localStorage.setItem('roles', JSON.stringify(this.service.roles));
           const token = responce.headers.get('X-Auth-Token');
           localStorage.setItem('currentUser', JSON.stringify({token: token }));
           this.service.writeDownLogin();
-          // console.log(this.service.isLogin);
+          this.goToHome();
+          // console.log(this.service.isLoggedIn);
           // console.log(token);
-          this.service.getUser().subscribe(
-            (res) => {
-              // console.log(res);
-              this.isDisable = true;
-              this.goToHome();
-            },
-            (error) => {
-              console.log(error);
-              this.isDisable = false;
-            }
-          );
+          // this.service.getUser().subscribe(
+          //   (res) => {
+          //     // console.log(res);
+          //     this.goToHome();
+          //   },
+          //   (error) => {
+          //     console.log(error);
+          //     this.isDisable = false;
+          //   }
+          // );
         },
         error => {
           // console.log(error);

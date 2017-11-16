@@ -8,14 +8,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { RegistrationService } from './shared/services/registration.service';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './shared/services/auth.service';
-import { AuthGuardService } from './shared/guards/auth-guard.service';
 import { ErrorComponent } from './error/error.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { AdminModule } from './admin/admin-module';
+import { LoginRoutingModule } from './login/login-routing.module';
+import { RegistrationRoutingModule } from './registration/registration-routing.module';
 
 @NgModule({
   declarations: [
@@ -30,10 +30,13 @@ import { TextMaskModule } from 'angular2-text-mask';
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
+    AdminModule,
+    LoginRoutingModule,
+    RegistrationRoutingModule,
     AppRoutingModule,
     TextMaskModule
   ],
-  providers: [RegistrationService, AuthService, AuthGuardService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

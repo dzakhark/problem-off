@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   }
   goToLogin() {
     // console.log(this.authService.checkLogin());
-    console.log(this.authService.isLogin);
+    console.log(this.authService.isLoggedIn);
     this.router.navigate(['/login']); // перенаправляем пользователя на PhraseListComponent
   }
 

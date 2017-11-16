@@ -9,7 +9,8 @@ import {Observable} from 'rxjs/Observable';
 export class AuthService {
   private urlLogIn = 'https://problemoff.herokuapp.com/api/login';
   private urlUsers = 'https://problemoff.herokuapp.com/users';
-  isLogin: boolean = this.checkLogin();
+  roles: string[] = this.setRoles();
+  isLoggedIn: boolean = this.checkLogin();
   constructor(private http: Http) { }
 
   onLogIn(user: LoginUser) {
@@ -62,11 +63,24 @@ export class AuthService {
   }
 
   writeDownLogin() {
-    this.isLogin = this.checkLogin();
+    this.isLoggedIn = this.checkLogin();
   }
 
   logout() {
     localStorage.removeItem('currentUser');
-    this.isLogin = this.checkLogin();
+    this.isLoggedIn = this.checkLogin();
+  }
+
+  // checkRole() {
+  //   if (localStorage.getItem('roles')) {
+  //     const roles = localStorage.getItem('roles');
+  //   }
+  // }
+  setRoles() {
+    const roles = localStorage.getItem('roles');
+    if (roles) {
+      return JSON.parse(roles);
+    }
+    return null;
   }
 }

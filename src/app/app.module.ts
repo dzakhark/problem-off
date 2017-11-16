@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistrationService } from './shared/services/registration.service';
 import {HttpModule} from '@angular/http';
-
+import { CategoriesService } from './shared/services/categories.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuardService } from './shared/guards/auth-guard.service';
@@ -33,7 +33,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     AppRoutingModule,
     TextMaskModule
   ],
-  providers: [RegistrationService, AuthService, AuthGuardService],
+  providers: [RegistrationService, AuthService, AuthGuardService, CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

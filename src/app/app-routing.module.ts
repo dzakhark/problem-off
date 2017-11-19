@@ -10,10 +10,10 @@ import {AdminRoleGuardService} from './shared/guards/admin-role-guard.service';
 
 @NgModule({
   imports: [RouterModule.forRoot([
-    { path: '', component: HomeComponent, canActivate: [UserRoleGuardService]},
+    { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [UserRoleGuardService]},
     { path: '**', component: ErrorComponent }
   ])],
-  providers: [UserRoleGuardService, AdminRoleGuardService],
+  providers: [UserRoleGuardService],
   exports: [RouterModule], // делаем re-export модуля для использования директив при маршрутизации
 })
 export class AppRoutingModule { }

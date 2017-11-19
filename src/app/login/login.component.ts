@@ -47,10 +47,10 @@ export class LoginComponent implements OnInit {
           // console.log(this.service.roles);
           // localStorage.setItem('roles', JSON.stringify(this.service.roles));
           const token = res.headers.get('X-Auth-Token');
-          localStorage.setItem('currentUser', JSON.stringify(token));
+          // localStorage.setItem('currentUser', JSON.stringify(token));
           this.cookieService.set('_curUser', JSON.stringify(token));
           this.cookieService.set('_opt', res['_body']);
-          this.service.decodeOptions(this.cookieService.get('_opt'));
+          // this.service.decodeOptions(this.cookieService.get('_opt'));
           this.service.isLoggedIn = this.service.checkLogin();
           this.goToHome();
           // console.log(this.service.isLoggedIn);

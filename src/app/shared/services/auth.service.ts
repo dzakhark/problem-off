@@ -71,14 +71,17 @@ export class AuthService {
   }
 
   setRoles() {
-    const roles = this.decodeOptions(this.cookieService.get('_opt'));
-    if (roles) {
-      const result = [];
-      for (let key in roles) {
-        result.push(roles[key]);
+    const options = this.cookieService.get('_opt');
+    if (options) {
+      const roles = this.decodeOptions(this.cookieService.get('_opt'));
+      if (roles) {
+        const result = [];
+        for (let key in roles) {
+          result.push(roles[key]);
+        }
+        console.log(result);
+        return result;
       }
-      console.log(result);
-      return result;
     }
     return null;
   }

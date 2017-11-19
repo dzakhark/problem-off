@@ -16,6 +16,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { AdminModule } from './admin/admin-module';
 import { LoginRoutingModule } from './login/login-routing.module';
 import { RegistrationRoutingModule } from './registration/registration-routing.module';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { RegistrationRoutingModule } from './registration/registration-routing.m
     AppRoutingModule,
     TextMaskModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

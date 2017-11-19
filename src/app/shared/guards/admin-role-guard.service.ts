@@ -9,8 +9,7 @@ export class AdminRoleGuardService implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authService.isLoggedIn || (this.authService.isLoggedIn && this.authService.roles.find((role) => role === 'ADMIN_ROLE'))) {
-      // this.router.navigate(['']);
+    if ((this.authService.isLoggedIn && this.authService.roles.find((role) => role === 'ADMIN_ROLE'))) {
       return true;
     } else {
       this.router.navigate(['/error']);

@@ -11,8 +11,9 @@ import {JwtHelper} from 'angular2-jwt';
 export class AuthService {
   private urlLogIn = 'https://problemoff.herokuapp.com/api/login';
   private urlUsers = 'https://problemoff.herokuapp.com/users';
-  roles: string[] = this.setRoles();
-  isLoggedIn: boolean = this.checkLogin();
+  // roles: string[] = this.setRoles();
+  roles: string[] = ['USER_ROLE', 'ADMIN_ROLE'];
+    isLoggedIn: boolean = this.checkLogin();
 
   constructor(private http: Http,
               private cookieService: CookieService) { }
@@ -83,7 +84,7 @@ export class AuthService {
         return result;
       }
     }
-    return null;
+    return [];
   }
 
   decodeOptions(opt: string) {

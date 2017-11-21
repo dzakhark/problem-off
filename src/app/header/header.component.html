@@ -17,8 +17,10 @@
             </div>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button" routerLink="/admin">Admin panel</button>
-            <button class="dropdown-item" type="button" routerLink="/">User panel</button>
+            <div *ngIf="authService.isAdminRole && authService.isUserRole">
+              <button class="dropdown-item" type="button" routerLink="/admin">Admin panel</button>
+              <button class="dropdown-item" type="button" routerLink="/">User panel</button>
+            </div>
             <div class="dropdown-divider"></div>
             <button class="dropdown-item" type="button" (click)="logout()">Log out</button>
           </div>

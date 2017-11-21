@@ -43,11 +43,15 @@ export class LoginComponent implements OnInit {
         (res) => {
           this.loginError = false;
           this.isDisable = false;
-          console.log(res['_body']);
+          // console.log(res['_body']);
           const token = res.headers.get('X-Auth-Token');
           this.cookieService.set('_curUser', JSON.stringify(token));
+          // console.log(this.authService.decodeOptions(res['_body']));
           this.cookieService.set('_opt', res['_body']);
+          this.authService.roles = this.authService.setRoles();
           this.authService.isLoggedIn = this.authService.checkLogin();
+          this.authService.isUserRole = this.authService.checkRole('USER_ROLE');
+          this.authService.isAdminRole = this.authService.checkRole('ADMIN_ROLE');
           this.goToHome();
           // console.log(this.service.isLoggedIn);
           // console.log(token);
@@ -73,7 +77,13 @@ export class LoginComponent implements OnInit {
   }
 
   public goToHome() {
-    this.router.navigate(['/']);
+    if (this.authService.isUserRole && this.authService.isAdminRole) {
+      this.router.navigate(['/']);
+    } else if (this.authService.isUserRole) {
+      this.router.navigate(['/']);
+    } else if (this.authService.isAdminRole) {
+      this.router.navigate(['/admin']);
+    }
   }
 
   public goToRegistration() {

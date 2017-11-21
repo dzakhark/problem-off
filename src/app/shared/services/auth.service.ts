@@ -11,9 +11,11 @@ import {JwtHelper} from 'angular2-jwt';
 export class AuthService {
   private urlLogIn = 'https://problemoff.herokuapp.com/api/login';
   private urlUsers = 'https://problemoff.herokuapp.com/users';
-  // roles: string[] = this.setRoles();
-  roles: string[] = ['USER_ROLE', 'ADMIN_ROLE'];
-    isLoggedIn: boolean = this.checkLogin();
+  roles: string[] = this.setRoles();
+  // roles: string[] = ['USER_ROLE', 'ADMIN_ROLE'];
+  isUserRole: string = this.checkRole('USER_ROLE');
+  isAdminRole: string = this.checkRole('ADMIN_ROLE');
+  isLoggedIn: boolean = this.checkLogin();
 
   constructor(private http: Http,
               private cookieService: CookieService) { }
@@ -81,7 +83,8 @@ export class AuthService {
           result.push(roles[key]);
         }
         console.log(result);
-        return result;
+        console.log(result[2]);
+        return result[2];
       }
     }
     return [];
@@ -90,5 +93,9 @@ export class AuthService {
   decodeOptions(opt: string) {
     const jwtHelper: JwtHelper = new JwtHelper();
     return jwtHelper.decodeToken(opt);
+  }
+
+  checkRole(role: string) {
+    return this.roles.find((r) => r === role);
   }
 }

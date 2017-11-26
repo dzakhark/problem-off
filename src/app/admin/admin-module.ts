@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
-import { ManageServicesComponent } from './manage-services/manage-services.component';
-import { ManageUsersComponent} from './manage-users/manage-users.component';
-import {AdminHeaderComponent} from './admin-header/admin-header.component';
+import { AdminRoutingModule,
+  AdminHeaderComponent,
+  AdminHomeComponent,
+  ManageServicesComponent,
+  ManageUsersComponent
+} from './index';
+import {CategoriesService} from '../shared/services/categories.service';
+import {CategoryListComponent} from './manage-services/category-list/category-list.component';
+import {CategoryItemComponent} from './manage-services/category-item/category-item.component';
+import {CategoryListDynamicComponent} from './manage-services/category-list-dynamic/category-list-dynamic.component';
+import {SubCategoryListComponent} from './manage-services/sub-category-list/sub-category-list.component';
 
 @NgModule({
+  entryComponents: [
+    SubCategoryListComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule
@@ -15,7 +24,12 @@ import {AdminHeaderComponent} from './admin-header/admin-header.component';
     AdminHomeComponent,
     ManageServicesComponent,
     ManageUsersComponent,
-    AdminHeaderComponent
-  ]
+    AdminHeaderComponent,
+    CategoryListComponent,
+    CategoryItemComponent,
+    CategoryListDynamicComponent,
+    SubCategoryListComponent
+  ],
+  providers: [CategoriesService]
 })
 export class AdminModule { }

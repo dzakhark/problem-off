@@ -70,6 +70,7 @@ export class AuthService {
   logout() {
     this.cookieService.delete('_curUser');
     this.cookieService.delete('_opt');
+    this.roles = this.setRoles();
     this.isLoggedIn = this.checkLogin();
   }
 
@@ -82,7 +83,7 @@ export class AuthService {
         for (let key in roles) {
           result.push(roles[key]);
         }
-        console.log(result);
+        console.log('Roles : ' + result);
         console.log(result[2]);
         return result[2];
       }

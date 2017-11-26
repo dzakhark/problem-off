@@ -1,0 +1,15 @@
+<div class="" style="display: inline-block">
+  <div class="category-list" style="margin-right: 50px; display: inline-block">
+    <div class="">{{upCategory?.name || 'Super category'}}</div>
+    <div *ngIf="inputCategories">
+      <div *ngFor="let item of inputCategories; let i = index">
+        <app-category-item [style.background-color]="idSelect === i ? 'red' : 'none'" [category]="item" (select)="createSubCategoryList($event)"></app-category-item>
+      </div>
+      <div class="btn btn-light">
+        <i class="fa fa-plus" aria-hidden="true"></i><span>Add</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-category-list-dynamic [componentData]="componentData" class="" style="display: inline-block"></app-category-list-dynamic>

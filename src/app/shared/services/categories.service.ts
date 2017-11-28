@@ -7,41 +7,30 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CategoriesService {
-  private urlCat = 'https://problemoff.herokuapp.com/api/categories/main';
+  private urlCat = 'https://problemoff.herokuapp.com/api/user/categories';
 
   constructor(private http: Http) { }
-      public getCategories(): Observable<Categories[]> {
+      public getCategories() {
         let categories = this.http.get(this.urlCat)
             .map(this.extractCategories) 
             .catch(this.handleError);
         return categories;
     }
     private extractCategories(response: Response) {
+      console.log(response)
         let res = response.json();
-        let categories: Categories[] = [];
-        for (let i = 0; i < res.length; i++) {
-            categories.push(new Categories(res[i].name));
+        console.log(res)
+         let categories: Categories[] = [];
+        
+        for (let i = 0; i < res['_embedded'].categories.length; i++) {
+          categories.push(res['_embedded'].categories[i]);
         }
+        
+        
+        console.log(categories)
         return categories;
     }
-//   public getCategories() {
-//     const headers = new Headers();
-//     headers.append('Content-Type', 'application/json');
-//     const options = new RequestOptions({ headers: headers });
-//     return this.http.get(this.urlReg, options)
-//       .catch(this.handleError);
-//   }
-//   getUser() {
-//     const token = localStorage.getItem('currentUser');
-//     console.log(JSON.parse(token).token);
-//     const headers = new Headers();
-//     headers.set('X-Auth-Token', JSON.parse(token).token);
-//     const options = new RequestOptions({ headers: headers});
-//     const user = this.http.get(this.urlUsers, options)
-//       .map(this.extractUser)
-//       .catch(this.handleError);
-//     return user;
-//   }
+
 
   private handleError(error: any, cought: Observable<any>): any {
     let message = '';

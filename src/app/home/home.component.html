@@ -3,37 +3,27 @@
   <hr class="my-4">
 
 <div class="dropdown">
-  <button  (click)="getCategories()" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Categories
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li class="dropdown-submenu"><a class="dropdown-item" href="#">NewItem</a>
-      <div class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Показать все</a></li>
-          <div class="dropdown-divider"></div>
-        <li><a class="dropdown-item" href="#">Action1</a></li>
-          <li class="dropdown-submenu"><a class="dropdown-item" href="#">Action2</a>
-            <div class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Показать все</a></li>
-              <div class="dropdown-divider"></div>
-              <li><a class="dropdown-item" href="#">Action3</a></li>
-              <li><a class="dropdown-item" href="#">Action4</a></li>
-            </div>
-      </li>
-      <li><a class="dropdown-item" href="#">Action3</a></li>
-      <li><a class="dropdown-item" href="#">Action4</a></li>
-      <li><a class="dropdown-item" href="#">Action5</a></li>
-      <li><a class="dropdown-item" href="#">Action6</a></li>
-      <li><a class="dropdown-item" href="#">Action7</a></li>
-      <li><a class="dropdown-item" href="#">Action8</a></li>
-        </div>
-    </li>
-    
-  </div>
+ 
+              <ul style="display: flex" class="dropdown-menu" id="hide">
+                <li  *ngFor="let item of categoriesArray; let i = index" >
+                  <ul class="category">
+                    <div *ngIf="i>0">
+                      <li><a class="dropdown-item">Показать все</a></li>
+                      <div class="dropdown-divider"></div>
+                    </div>
+                    <li [ngClass]="{'dropdown-submenu': item2.subCategories.length > 0}" *ngFor="let item2 of item" (click)="goToSubCategory(item2, i)"><a class="dropdown-item">{{item2.name}}</a></li>
+                  </ul>
+                </li>
+              </ul>
+        
+        
+        
 </div>
 </div>
+
+
 
 <!--<div style="height: 60px"></div>-->

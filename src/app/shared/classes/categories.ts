@@ -1,9 +1,5 @@
 export class Categories {
-    public name: string;
+  constructor(public name: string, public types: {name: string}[], public subCategories: Categories[]) {}
+}
   
-  
-    constructor(name: string) {
-      this.name = name;
-    }
-  }
   

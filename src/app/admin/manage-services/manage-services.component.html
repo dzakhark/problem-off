@@ -1,7 +1,6 @@
 <app-category-breadcrumb [inputCategory]="selectCategory"
                          (selectInBreadcrumb)="goToSubCategory($event)">
 </app-category-breadcrumb>
-<app-category-list [inputCategories]="categories"
-                   [inputCategory]="selectCategory"
+<app-category-list [inputCategory]="selectCategory"
                    (selectSubCategory)="goToSubCategory($event)">
 </app-category-list>

@@ -6,11 +6,12 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {CookieService} from 'ngx-cookie-service';
 import {JwtHelper} from 'angular2-jwt';
+import {Data} from '../data/data';
 
 @Injectable()
 export class AuthService {
-  private urlLogIn = 'https://problemoff.herokuapp.com/api/login';
-  private urlUsers = 'https://problemoff.herokuapp.com/users';
+  data = new Data();
+  private urlLogIn = this.data.apiLinks.user.loginUrl;
   roles: string[] = this.setRoles();
   // roles: string[] = ['USER_ROLE', 'ADMIN_ROLE'];
   isUserRole: string = this.checkRole('USER_ROLE');
@@ -79,7 +80,7 @@ export class AuthService {
       const roles = this.decodeOptions(this.cookieService.get('_opt'));
       if (roles) {
         const result = [];
-        for (let key in roles) {
+        for (const key in roles) {
           result.push(roles[key]);
         }
         console.log(result);

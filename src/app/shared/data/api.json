@@ -1,0 +1,5 @@
+{
+  "admin": {
+    "getCategoriesMain": "https://problemoff.herokuapp.com/api/admin/categories/main"
+  }
+}

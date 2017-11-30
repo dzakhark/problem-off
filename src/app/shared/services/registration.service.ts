@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { RegisUser } from '../classes/regisUser';
+import { Data } from '../data/data';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RegistrationService {
-  private urlReg = 'https://problemoff.herokuapp.com/api/register';
+  data = new Data();
+  private urlReg = this.data.apiLinks.user.registrationUrl;
 
   constructor(private http: Http) { }
 
@@ -25,7 +27,7 @@ export class RegistrationService {
 
     if (error instanceof Response) {
       const errorData = error.json().error || JSON.stringify(error.json());
-      message = `${error.status} - ${error.statusText || ''} ${errorData}`
+      message = `${error.status} - ${error.statusText || ''} ${errorData}`;
     } else {
       message = error.message ? error.message : error.toString();
     }

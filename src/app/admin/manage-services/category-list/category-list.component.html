@@ -1,5 +1,5 @@
-<div class="category-list" *ngIf="inputCategories">
-  <div class="category-item" *ngFor="let item of inputCategories">
+<div class="category-list col-sm-12 col-md-6 col-lg-5 p-0" *ngIf="inputCategory?.subCategories">
+  <div class="category-item" *ngFor="let item of inputCategory.subCategories">
     <div class="category-name" (click)="selected(item)">
       {{item.name}}
     </div>

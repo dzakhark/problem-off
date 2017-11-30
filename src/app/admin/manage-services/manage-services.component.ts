@@ -1,10 +1,7 @@
-import {
-  AfterContentChecked, AfterContentInit, AfterViewChecked, Component, DoCheck, OnChanges,
-  OnInit,
-  AfterViewInit,
-} from '@angular/core';
-import {CategoriesService} from '../../shared/services/categories.service';
-import {Category} from '../../shared/classes/category';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { CategoriesService } from '../../shared/services/categories.service';
+import { Category } from '../../shared/classes/category';
+import { Data } from '../../shared/data/data';
 
 @Component({
   selector: 'app-manage-services',
@@ -13,9 +10,11 @@ import {Category} from '../../shared/classes/category';
 })
 export class ManageServicesComponent implements OnInit, AfterViewChecked {
 
+  data = new Data();
   mainCategories: Category[];
-  categories: Category[];
-  selectCategory = new Category('Главные', [], this.mainCategories, []);
+  mainLink = this.data.apiLinks.admin.getMainCategories;
+  mainCategory: Category;
+  selectCategory: Category;
 
   constructor(private categoriesService: CategoriesService) { }
 
@@ -23,60 +22,25 @@ export class ManageServicesComponent implements OnInit, AfterViewChecked {
     this.getCategory();
   }
 
-  // ngDoCheck() {
-  //   this.refresh();
-  // }
-  //
-  // ngAfterViewInit(): void {
-  //   this.refresh();
-  // }
-  //
   ngAfterViewChecked(): void {
-    console.log('isModify: ' + this.categoriesService.isModify);
     if (this.categoriesService.isModify) {
       this.getCategory();
       this.categoriesService.isModify = false;
     }
   }
-  //
-  // ngAfterContentChecked(): void {
-  //   if (this.categoriesService.isModify) {
-  //     this.getCategory();
-  //     this.categoriesService.isModify = false;
-  //   }
-  // }
-  //
-  // ngAfterContentInit(): void {
-  //   if (this.categoriesService.isModify) {
-  //     this.getCategory();
-  //     this.categoriesService.isModify = false;
-  //   }
-  // }
-  //
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (this.categoriesService.isModify) {
-  //     this.getCategory();
-  //     this.categoriesService.isModify = false;
-  //   }
-  // }
 
   public getCategory() {
-    this.categoriesService.getServices().subscribe(
+    this.categoriesService.getCategories(this.data.apiLinks.admin.getMainCategories).subscribe(
       categories => {
-        this.categories = categories;
         this.mainCategories = categories;
+        this.mainCategory = new Category('Главные', [], this.mainCategories, { self: { href: this.mainLink } });
+        this.selectCategory = this.mainCategory;
       },
       error => console.log(error)
     );
   }
 
   goToSubCategory(category) {
-    if (category.name === 'Главные') {
-      this.categories = this.mainCategories;
-      this.selectCategory = new Category('Главные', [], this.mainCategories, []);
-    } else {
-      this.selectCategory = category;
-      this.categories = category.subCategories;
-    }
+    this.selectCategory = category;
   }
 }

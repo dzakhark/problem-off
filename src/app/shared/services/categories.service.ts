@@ -4,7 +4,6 @@ import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {CookieService} from 'ngx-cookie-service';
 import {Category} from '../classes/category';
 
-
 @Injectable()
 export class CategoriesService {
 
@@ -19,10 +18,10 @@ export class CategoriesService {
     headers.set('X-Auth-Token', JSON.parse(this.cookieService.get('_curUser')));
     return new RequestOptions({ headers: headers});
   }
-  getServices() {
+
+  getCategories(url: string) {
     const options = this.createHeader();
-    console.log(options);
-    const categories = this.http.get(this.urlServices, options)
+    const categories = this.http.get(url, options)
       .map(this.extractCategories)
       .catch(this.handleError);
     return categories;
@@ -42,17 +41,14 @@ export class CategoriesService {
 
   private extractCategories(response: Response) {
     const res = response.json();
-    console.log(res);
     const categories: Category[] = [];
     for (let i = 0; i < res['_embedded'].categories.length; i++) {
       // const obj: Category = new Category(res['_embedded'].categories[i].name,
       //   res['_embedded'].categories[i].types,
       //   res['_embedded'].categories[i].subCategories);
       categories.push(res['_embedded'].categories[i]);
-      // categories.push(obj);
-      // console.log(res['_embedded'].categories[i]);
     }
-    console.log('Categories');
+    // console.log('Categories');
     // console.log(categories[0]._links['self']);
     // console.log(categories[1].subCategories[1].subCategories[0]);
     return categories;

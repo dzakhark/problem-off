@@ -5,7 +5,7 @@
         [class.btn-link]="i !== breadcrumbList.length - 1"
         *ngFor="let item of breadcrumbList; let i = index"
         (click)="selectCategoryName(item)">
-      <span style="display: inline-block" >{{item?.name || 'Главные'}}</span>
+      <span style="display: inline-block" >{{item?.name}}</span>
     </li>
   </ol>
 </nav>

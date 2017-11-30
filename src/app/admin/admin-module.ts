@@ -10,7 +10,7 @@ import { CategoryItemComponent } from './manage-services/category-item/category-
 import { CategoryBreadcrumbComponent } from './manage-services/category-breadcrumb/category-breadcrumb.component';
 import {CategoriesService} from '../shared/services/categories.service';
 import {ModalComponent} from './manage-services/category-list/modal/modal.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [

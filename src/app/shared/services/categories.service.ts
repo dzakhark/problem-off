@@ -3,28 +3,37 @@ import {Observable} from 'rxjs/Observable';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {CookieService} from 'ngx-cookie-service';
 import {Category} from '../classes/category';
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class CategoriesService {
 
-  private urlServices = 'https://problemoff.herokuapp.com/api/admin/categories/main';
   isModify: boolean;
   isModifyForBreadcrumb: boolean;
   constructor(private http: Http,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService,
+              private authService: AuthService) { }
 
   createHeader() {
     const headers = new Headers();
+    // console.log(this.cookieService.get('_curUser'));
     headers.set('X-Auth-Token', JSON.parse(this.cookieService.get('_curUser')));
     return new RequestOptions({ headers: headers});
   }
 
   getCategories(url: string) {
-    const options = this.createHeader();
-    const categories = this.http.get(url, options)
-      .map(this.extractCategories)
-      .catch(this.handleError);
-    return categories;
+    if (this.authService.isLoggedIn) {
+      const options = this.createHeader();
+      const categories = this.http.get(url, options)
+        .map(this.extractCategories)
+        .catch(this.handleError);
+      return categories;
+    } else {
+      const categories = this.http.get(url)
+        .map(this.extractCategories)
+        .catch(this.handleError);
+      return categories;
+    }
   }
 
   createCategory(url: string, newCategory: { name: string }) {

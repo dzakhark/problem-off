@@ -4,7 +4,7 @@ export class Data {
       getMainCategories: 'https://problemoff.herokuapp.com/api/admin/categories/main'
     },
     user: {
-      getMainCategories: 'https://problemoff.herokuapp.com/api/categories/main',
+      getCategories: 'https://problemoff.herokuapp.com/api/user/categories',
       loginUrl: 'https://problemoff.herokuapp.com/api/login',
       registrationUrl: 'https://problemoff.herokuapp.com/api/register'
     }

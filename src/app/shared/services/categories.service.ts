@@ -7,7 +7,6 @@ import {Category} from '../classes/category';
 @Injectable()
 export class CategoriesService {
 
-  private urlServices = 'https://problemoff.herokuapp.com/api/admin/categories/main';
   isModify: boolean;
   isModifyForBreadcrumb: boolean;
   constructor(private http: Http,

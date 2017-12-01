@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { UserRoleGuardService } from './shared/guards/user-role-guard.service';
-import {AdminRoleGuardService} from './shared/guards/admin-role-guard.service';
 
 // В данном примере настройки маршрутизации выделены в отдельный модуль.
 

@@ -26,6 +26,12 @@ export class HomeComponent implements OnInit {
        $("ul.category:not(:first)").remove();
         }
   });
+  
+}
+getViewAll(len: number, index: number) {
+  if(len == 0) {
+    this.categoriesArray.splice(index+1);
+  }
 }
 
   getCategories() {

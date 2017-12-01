@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../shared/services/categories.service';
 import { Categories } from '../shared/classes/categories';
-import * as $ from 'jquery';
+import { Data } from '../shared/data/data';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,36 +9,32 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
+  data = new Data();
   categoriesArray = [];
-
-  constructor(private service: CategoriesService) { }
-
-  ngOnInit() {
-    this.getCategories();
-   
-  }
   categories: Categories[];
   errorMessage: string;
-  ngAfterViewChecked() {
-    $(document).mouseover(function (e) {
-      var container = $("#hide");
-      if (container.has(e.target).length === 0){
-       $("ul.category:not(:first)").remove();
-        }
-  });
-  
-}
-getViewAll(len: number, index: number) {
-  if(len == 0) {
-    this.categoriesArray.splice(index+1);
+
+  constructor(private service: CategoriesService) { }
+  ngOnInit() {
+    this.getCategories();
   }
-}
+
+  hideList() {
+    console.log(this.categoriesArray.length);
+    this.categoriesArray.splice(1);
+  }
+
+  getViewAll(len: number, index: number) {
+    if (len === 0) {
+      this.categoriesArray.splice(index + 1);
+    }
+  }
 
   getCategories() {
-    this.service.getCategories().subscribe(
+    this.service.getCategories(this.data.apiLinks.user.getCategories).subscribe(
         categories => {
           this.categories = categories;
-          let array: Categories[] = [];
+          const array: Categories[] = [];
           for (let i = 0; i < categories.length; i++) {
             array.push(categories[i]);
           }
@@ -47,23 +43,11 @@ getViewAll(len: number, index: number) {
         },
         error => this.errorMessage = error
     );
-    
   }
- 
-    
-  
 
   goToSubCategory(category: Categories, index: number) {
-    console.log(index);
-    console.log(category.subCategories);
     this.categoriesArray.splice(index + 1);
     this.categoriesArray[index + 1] = category.subCategories;
-    if(document.getElementsByClassName('category').length == 1) {
-      this.getCategories();
-    }
-    
   }
-
-  
 }
 

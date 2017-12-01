@@ -8,8 +8,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 import { AppRoutingModule } from './app-routing.module';
+<<<<<<< HEAD
 import { HttpModule } from '@angular/http';
 
+=======
+import { RegistrationService } from './shared/services/registration.service';
+import {HttpModule} from '@angular/http';
+import { CategoriesService } from './shared/services/categories.service';
+>>>>>>> user_part
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -37,7 +43,11 @@ import {CookieService} from 'ngx-cookie-service';
     AppRoutingModule,
     TextMaskModule
   ],
+<<<<<<< HEAD
   providers: [CookieService],
+=======
+  providers: [RegistrationService, AuthService, AuthGuardService, CategoriesService],
+>>>>>>> user_part
   bootstrap: [AppComponent]
 })
 export class AppModule { }

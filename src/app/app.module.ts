@@ -16,6 +16,8 @@ import { AdminModule } from './admin/admin-module';
 import { LoginRoutingModule } from './login/login-routing.module';
 import { RegistrationRoutingModule } from './registration/registration-routing.module';
 import {CookieService} from 'ngx-cookie-service';
+import { CabinetHomeComponent } from './cabinet/cabinet-home/cabinet-home.component';
+import {CabinetModule} from "./cabinet/cabinet-module";
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import {CookieService} from 'ngx-cookie-service';
     HttpModule,
     ReactiveFormsModule,
     AdminModule,
+    CabinetModule,
     LoginRoutingModule,
     RegistrationRoutingModule,
     AppRoutingModule,

@@ -1,24 +1,24 @@
 <div class="" *ngIf="userInformation">
-  <div class="row pl-4">
-    <div class="">
+  <div class="info-header">
+    <div class="avatar">
       <img src="../../../assets/images/User-Default.jpg" alt="User Avatar" class="rounded-circle">
     </div>
-    <div class="">
-      {{userInformation.firstName}} {{userInformation.lastName}}
+    <div class="lead user">
+      <span>{{userInformation.firstName}} {{userInformation.lastName}}</span>
     </div>
   </div>
-  <div class="info-list pl-4">
-    <div class="row pt-3">
-      <div class="col-4 col-sm-3 col-lg-2 title">First Name</div>
+  <ul class="info-list pl-4">
+    <li class="row pt-3">
+      <div class="col-4 col-sm-3 col-lg-2 title text-muted">First name</div>
       <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>
-    </div>
-    <div class="row pt-3">
-      <div class="col-4 col-sm-3 col-lg-2 title">First Name</div>
+    </li>
+    <li class="row pt-3">
+      <div class="col-4 col-sm-3 col-lg-2 title text-muted">Last name</div>
       <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>
-    </div>
-    <div class="row pt-3">
-      <div class="col-4 col-sm-3 col-lg-2 title">First Name</div>
+    </li>
+    <li class="row pt-3">
+      <div class="col-4 col-sm-3 col-lg-2 title text-muted">Email</div>
       <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>
-  </div>
-  </div>
+  </li>
+  </ul>
 </div>

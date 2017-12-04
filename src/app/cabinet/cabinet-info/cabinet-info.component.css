@@ -7,4 +7,17 @@ img {
   list-style-type: none;
 }
 
+.info-header {
+  display: flex;
+  padding: 0 25px 0 25px;
+}
 
+.user {
+  padding: 5px 15px;
+  font-size: 1.5rem;
+}
+
+.title:after {
+  content: ':';
+  padding-left: 5px;
+}

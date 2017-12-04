@@ -15,9 +15,8 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { AdminModule } from './admin/admin-module';
 import { LoginRoutingModule } from './login/login-routing.module';
 import { RegistrationRoutingModule } from './registration/registration-routing.module';
-import {CookieService} from 'ngx-cookie-service';
-import { CabinetHomeComponent } from './cabinet/cabinet-home/cabinet-home.component';
-import {CabinetModule} from "./cabinet/cabinet-module";
+import { CookieService } from 'ngx-cookie-service';
+import { CabinetModule } from './cabinet/cabinet-module';
 
 @NgModule({
   declarations: [

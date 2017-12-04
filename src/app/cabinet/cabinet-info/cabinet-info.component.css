@@ -1,0 +1,10 @@
+img {
+  height: 5rem;
+  border: 1px solid black;
+}
+
+.info-list {
+  list-style-type: none;
+}
+
+

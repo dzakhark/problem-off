@@ -1,3 +1,24 @@
-<p>
-  cabinet-info works!
-</p>
+<div class="" *ngIf="userInformation">
+  <div class="row pl-4">
+    <div class="">
+      <img src="../../../assets/images/User-Default.jpg" alt="User Avatar" class="rounded-circle">
+    </div>
+    <div class="">
+      {{userInformation.firstName}} {{userInformation.lastName}}
+    </div>
+  </div>
+  <div class="info-list pl-4">
+    <div class="row pt-3">
+      <div class="col-4 col-sm-3 col-lg-2 title">First Name</div>
+      <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-4 col-sm-3 col-lg-2 title">First Name</div>
+      <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-4 col-sm-3 col-lg-2 title">First Name</div>
+      <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>
+  </div>
+  </div>
+</div>

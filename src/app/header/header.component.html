@@ -22,7 +22,7 @@
               <button class="dropdown-item" type="button" routerLink="/">User panel</button>
             </div>
             <div *ngIf="authService.isLoggedIn && authService.isUserRole">
-              <button class="dropdown-item" type="button" routerLink="/cabinet/info">Cabinet</button>
+              <button class="dropdown-item" type="button" routerLink="/cabinet">Cabinet</button>
             </div>
             <div class="dropdown-divider"></div>
             <button class="dropdown-item" type="button" (click)="logout()">Log out</button>

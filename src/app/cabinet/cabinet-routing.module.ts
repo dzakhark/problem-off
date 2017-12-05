@@ -2,14 +2,25 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CabinetInfoComponent } from './cabinet-info/cabinet-info.component';
-// import {UserRoleGuardService} from '../shared/guards/user-role-guard.service';
-// import {AuthGuardService} from '../shared/guards/auth-guard.service';
-import {WithAuthGuardService} from '../shared/guards/with-auth-guard.service';
+import { WithAuthGuardService } from '../shared/guards/with-auth-guard.service';
+import { CabinetHomeComponent } from './cabinet-home/cabinet-home.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'cabinet/info', component: CabinetInfoComponent, canActivate: [WithAuthGuardService]}
+      {
+        path: 'cabinet',
+        component: CabinetHomeComponent,
+        // canActivate: [WithAuthGuardService],
+        children: [
+          {
+            path: '',
+            children: [
+              { path: 'info', component: CabinetInfoComponent}
+            ]
+          }
+        ]
+      }
     ])
   ],
   exports: [

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {CabinetInfoComponent} from './cabinet-info/cabinet-info.component';
 import {CabinetRoutingModule} from './cabinet-routing.module';
 import {UserService} from '../shared/services/user.service';
+import {CabinetHomeComponent} from './cabinet-home/cabinet-home.component';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import {UserService} from '../shared/services/user.service';
     CabinetRoutingModule
   ],
   declarations: [
+    CabinetHomeComponent,
     CabinetInfoComponent
   ],
   providers: [

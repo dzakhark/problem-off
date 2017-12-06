@@ -56,7 +56,8 @@ export class EditInfoComponent implements OnInit, CanDeactivateGuard {
     if (this.saved) {
       return true;
     }
-
-    return confirm('Вы не сохранили изменения. Уйти со страницы?');
+    const answer = confirm('Вы не сохранили изменения. Уйти со страницы?');
+    console.log(answer);
+    return answer;
   }
 }

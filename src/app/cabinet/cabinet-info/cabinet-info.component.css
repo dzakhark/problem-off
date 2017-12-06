@@ -1,6 +1,6 @@
 img {
   height: 5rem;
-  border: 1px solid black;
+  border: 1px solid #cccccc;
 }
 
 .info-list {
@@ -10,7 +10,7 @@ img {
 
 .info-header {
   display: flex;
-  padding: 0 35px 0 35px;
+  padding-left: 10px;
 }
 
 .user {

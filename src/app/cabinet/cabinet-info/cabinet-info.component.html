@@ -1,6 +1,6 @@
 <div class="" *ngIf="userInformation">
   <div class="info-header">
-    <div class="avatar mt-auto">
+    <div class="avatar mt-auto pl-2">
       <img src="../../../assets/images/User-Default.jpg" alt="User Avatar" class="rounded-circle">
     </div>
     <div class="user lead pr-2 pl-3 pt-md-1 pb-md-1 pt-sm-0">
@@ -54,46 +54,45 @@
   <!--</ul>-->
 
   <ul class="info-list2 pt-2">
-    <li class="row pt-2">
+    <li class="info-list-item pt-2">
       <div class="title text-muted">First name</div>
       <div class="info2">{{userInformation.firstName}}</div>
     </li>
-    <li class="row pt-2">
+    <li class="info-list-item pt-2">
       <div class="title text-muted">Last name</div>
       <div class="info2">{{userInformation.lastName}}</div>
     </li>
-    <li class="row pt-2">
+    <li class="info-list-item pt-2">
       <div class="title text-muted">Email</div>
       <div class="info2">{{userInformation.email}}</div>
     </li>
-    <li class="row pt-2">
+    <li class="info-list-item pt-2">
       <div class="title text-muted">Sex</div>
       <div class="info2">
-        <span *ngIf="!userInformation.sex" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+        <span *ngIf="!userInformation.sex" class="link-edit add-info" routerLink="/cabinet/info/edit">Add information</span>
         {{userInformation.sex}}
       </div>
     </li>
-    <li class="row pt-2">
+    <li class="info-list-item pt-2">
       <div class="title text-muted">Phone number</div>
       <div class="info2">
-        <span *ngIf="!userInformation.phoneNumber" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+        <span *ngIf="!userInformation.phoneNumber" class="link-edit add-info" routerLink="/cabinet/info/edit">Add information</span>
         {{userInformation.phoneNumber}}
       </div>
     </li>
-    <li class="row pt-2">
+    <li class="info-list-item pt-2">
       <div class="title text-muted">Date birthday</div>
       <div class="info2">
-        <span *ngIf="!userInformation.dateBirthday" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+        <span *ngIf="!userInformation.dateBirthday" class="link-edit add-info" routerLink="/cabinet/info/edit">Add information</span>
         {{userInformation.dateBirthday}}
       </div>
     </li>
-    <li class="row pt-2">
+    <li class="info-list-item pt-2">
       <div class="title text-muted">Description</div>
-      <div class="info2">
-        <span *ngIf="!userInformation.description" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+      <div class="info2 description">
+        <span *ngIf="!userInformation.description" class="link-edit add-info" routerLink="/cabinet/info/edit">Add information</span>
         {{userInformation.description}}
       </div>
     </li>
   </ul>
-  <button (click)="edit()">Edit</button>
 </div>

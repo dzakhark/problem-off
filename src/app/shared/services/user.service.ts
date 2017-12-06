@@ -10,18 +10,24 @@ export class UserService {
   constructor(private http: Http,
               private cookieService: CookieService) { }
 
-  createHeaders() {
+  createHeader() {
     const headers = new Headers();
     headers.set('X-Auth-Token', JSON.parse(this.cookieService.get('_curUser')));
     return new RequestOptions({ headers: headers });
   }
 
   getUserInfo(url: string) {
-    const options = this.createHeaders();
+    const options = this.createHeader();
     const userInfo = this.http.get(url, options)
       .map(this.extractUserInfo)
       .catch(this.handleError);
     return userInfo;
+  }
+
+  updateUserInfo(url: string) {
+    const options = this.createHeader();
+    return this.http.put(url, options)
+      .catch(this.handleError);
   }
 
   extractUserInfo(response: Response) {

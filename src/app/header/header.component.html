@@ -10,7 +10,7 @@
         <div class="btn-group" *ngIf="authService.isLoggedIn">
           <button type="button" class="btn btn-light dropdown-toggle btn-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <div class="user-inf text-truncate">
+            <div class="user-inf text-truncate d-none d-sm-block">
               <span>UserName</span>
               <br>
               <span>UserLastName</span>
@@ -22,7 +22,7 @@
               <button class="dropdown-item" type="button" routerLink="/">User panel</button>
             </div>
             <div *ngIf="authService.isLoggedIn && authService.isUserRole">
-              <button class="dropdown-item" type="button" routerLink="/cabinet">Cabinet</button>
+              <button class="dropdown-item" type="button" routerLink="/cabinet/info">Cabinet</button>
             </div>
             <div class="dropdown-divider"></div>
             <button class="dropdown-item" type="button" (click)="logout()">Log out</button>

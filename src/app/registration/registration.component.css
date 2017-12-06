@@ -6,8 +6,3 @@ button {
 .red-text {
   color: red;
 }
-
-input:focus {
-  /*background: #FA6;*/
-  /*outline: none;  !* убрать рамку *!*/
-}

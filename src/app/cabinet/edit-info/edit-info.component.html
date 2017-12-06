@@ -1,0 +1,50 @@
+<div class="edit-wrapper">
+  <div class="h3">Edit personal information</div>
+  <form *ngIf="userInformation">
+    <div class="list pt-2">
+      <div class="list-item">
+        <div class="form-group row">
+          <label for="firstName" class="col-sm-3 col-form-label">First name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="userInformation.firstName" name="firstName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lastName" class="col-sm-3 col-form-label">Last name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="userInformation.firstName" name="firstName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Date Birthday</label>
+          <div class="col-sm-9">
+            <!--must customize-->
+            <input type="date" [(ngModel)]="userInformation.dateBirthday" name="date">
+            </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Sex</label>
+          <div class="col-sm-9">
+            <label class="custom-control custom-radio">
+              <input id="radio1" name="sex" type="radio" class="custom-control-input" value="Man" [(ngModel)]="userInformation.sex">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Man</span>
+            </label>
+            <label class="custom-control custom-radio">
+              <input id="radio2" name="sex" type="radio" class="custom-control-input" value="Woman" [(ngModel)]="userInformation.sex">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Woman</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description" class="col-sm-3 col-form-label">About</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" id="description" rows="5" [(ngModel)]="userInformation.description" name="description"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="doChanges()">Submit</button>
+  </form>
+</div>

@@ -1,24 +1,99 @@
 <div class="" *ngIf="userInformation">
-  <div class="row pl-5">
-    <div class="avatar col-auto">
+  <div class="info-header">
+    <div class="avatar mt-auto">
       <img src="../../../assets/images/User-Default.jpg" alt="User Avatar" class="rounded-circle">
     </div>
-    <div class="lead user col-auto">
+    <div class="user lead pr-2 pl-3 pt-md-1 pb-md-1 pt-sm-0">
       <span>{{userInformation.firstName}} {{userInformation.lastName}}</span>
+      <div class="link-edit" routerLink="/cabinet/info/edit">
+        <i class="fa fa-pencil mr-1" aria-hidden="true"></i><span>Edit</span>
+      </div>
     </div>
   </div>
-  <ul class="info-list">
-    <li class="row pt-3">
-      <div class="col-4 col-sm-3 col-lg-2 title text-muted">First name</div>
-      <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>
+  <!--<ul class="info-list">-->
+    <!--<li class="row pt-2">-->
+      <!--<div class="col-4 col-sm-4 col-lg-2 title text-muted">First name</div>-->
+      <!--<div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.firstName}}</div>-->
+    <!--</li>-->
+    <!--<li class="row pt-2">-->
+      <!--<div class="col-4 col-sm-4 col-lg-2 title text-muted">Last name</div>-->
+      <!--<div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.lastName}}</div>-->
+    <!--</li>-->
+    <!--<li class="row pt-2">-->
+      <!--<div class="col-4 col-sm-4 col-lg-2 title text-muted">Email</div>-->
+      <!--<div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.email}}</div>-->
+    <!--</li>-->
+    <!--<li class="row pt-2">-->
+      <!--<div class="col-4 col-sm-4 col-lg-2 title text-muted">Sex</div>-->
+      <!--<div class="col-8 col-sm-6 col-lg-6 info">-->
+        <!--<span *ngIf="!userInformation.sex" class="add-info" routerLink="/cabinet/info/edit">Add information</span>-->
+        <!--{{userInformation.sex}}-->
+      <!--</div>-->
+    <!--</li>-->
+    <!--<li class="row pt-2">-->
+      <!--<div class="col-4 col-sm-4 col-lg-2 title text-muted">Phone number</div>-->
+      <!--<div class="col-8 col-sm-6 col-lg-6 info">-->
+        <!--<span *ngIf="!userInformation.phoneNumber" class="add-info" routerLink="/cabinet/info/edit">Add information</span>-->
+        <!--{{userInformation.phoneNumber}}-->
+      <!--</div>-->
+    <!--</li>-->
+    <!--<li class="row pt-2">-->
+      <!--<div class="col-4 col-sm-4 col-lg-2 title text-muted">Date birthday</div>-->
+      <!--<div class="col-8 col-sm-6 col-lg-6 info">-->
+        <!--<span *ngIf="!userInformation.dateBirthday" class="add-info" routerLink="/cabinet/info/edit">Add information</span>-->
+        <!--{{userInformation.dateBirthday}}-->
+      <!--</div>-->
+    <!--</li>-->
+    <!--<li class="row pt-2">-->
+      <!--<div class="col-4 col-sm-4 col-lg-2 title text-muted">Description</div>-->
+      <!--<div class="col-8 col-sm-6 col-lg-6 info">-->
+        <!--<span *ngIf="!userInformation.description" class="add-info" routerLink="/cabinet/info/edit">Add information</span>-->
+        <!--{{userInformation.description}}-->
+      <!--</div>-->
+    <!--</li>-->
+  <!--</ul>-->
+
+  <ul class="info-list2 pt-2">
+    <li class="row pt-2">
+      <div class="title text-muted">First name</div>
+      <div class="info2">{{userInformation.firstName}}</div>
     </li>
-    <li class="row pt-3">
-      <div class="col-4 col-sm-3 col-lg-2 title text-muted">Last name</div>
-      <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.lastName}}</div>
+    <li class="row pt-2">
+      <div class="title text-muted">Last name</div>
+      <div class="info2">{{userInformation.lastName}}</div>
     </li>
-    <li class="row pt-3">
-      <div class="col-4 col-sm-3 col-lg-2 title text-muted">Email</div>
-      <div class="col-8 col-sm-6 col-lg-6 info">{{userInformation.email}}</div>
-  </li>
+    <li class="row pt-2">
+      <div class="title text-muted">Email</div>
+      <div class="info2">{{userInformation.email}}</div>
+    </li>
+    <li class="row pt-2">
+      <div class="title text-muted">Sex</div>
+      <div class="info2">
+        <span *ngIf="!userInformation.sex" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+        {{userInformation.sex}}
+      </div>
+    </li>
+    <li class="row pt-2">
+      <div class="title text-muted">Phone number</div>
+      <div class="info2">
+        <span *ngIf="!userInformation.phoneNumber" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+        {{userInformation.phoneNumber}}
+      </div>
+    </li>
+    <li class="row pt-2">
+      <div class="title text-muted">Date birthday</div>
+      <div class="info2">
+        <span *ngIf="!userInformation.dateBirthday" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+        {{userInformation.dateBirthday}}
+      </div>
+    </li>
+    <li class="row pt-2">
+      <div class="title text-muted">Description</div>
+      <div class="info2">
+        <span *ngIf="!userInformation.description" class="add-info" routerLink="/cabinet/info/edit">Add information</span>
+        {{userInformation.description}}
+      </div>
+    </li>
   </ul>
+  <button (click)="edit()">Edit</button>
 </div>

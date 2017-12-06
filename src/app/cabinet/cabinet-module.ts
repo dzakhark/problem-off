@@ -4,15 +4,19 @@ import {CabinetInfoComponent} from './cabinet-info/cabinet-info.component';
 import {CabinetRoutingModule} from './cabinet-routing.module';
 import {UserService} from '../shared/services/user.service';
 import {CabinetHomeComponent} from './cabinet-home/cabinet-home.component';
+import {EditInfoComponent} from './edit-info/edit-info.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    CabinetRoutingModule
+    CabinetRoutingModule,
+    FormsModule
   ],
   declarations: [
     CabinetHomeComponent,
-    CabinetInfoComponent
+    CabinetInfoComponent,
+    EditInfoComponent
   ],
   providers: [
     UserService

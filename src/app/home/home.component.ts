@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../shared/services/categories.service';
-import { Categories } from '../shared/classes/categories';
+import { Category } from '../shared/classes/category';
 import { Data } from '../shared/data/data';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   data = new Data();
   categoriesArray = [];
-  categories: Categories[];
+  categories: Category[];
   errorMessage: string;
 
   constructor(private service: CategoriesService) { }
@@ -34,18 +35,18 @@ export class HomeComponent implements OnInit {
     this.service.getCategories(this.data.apiLinks.user.getCategories).subscribe(
         categories => {
           this.categories = categories;
-          const array: Categories[] = [];
+          const array: Category[] = [];
           for (let i = 0; i < categories.length; i++) {
             array.push(categories[i]);
           }
           this.categoriesArray[0] = array;
-          console.log(this.categories[0]);
+          // console.log(this.categories[0]);
         },
         error => this.errorMessage = error
     );
   }
 
-  goToSubCategory(category: Categories, index: number) {
+  goToSubCategory(category: Category, index: number) {
     this.categoriesArray.splice(index + 1);
     this.categoriesArray[index + 1] = category.subCategories;
   }

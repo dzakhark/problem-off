@@ -14,14 +14,13 @@ export class CabinetInfoComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-
     this.userService.getUserInfo('https://problemoff.herokuapp.com/api/account/').subscribe(
       data => this.userInformation = data,
       error => console.log(error)
     );
   }
 
-  edit(item) {
-
+  edit() {
+    console.log(this.userInformation);
   }
 }

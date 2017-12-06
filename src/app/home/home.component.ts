@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../shared/services/categories.service';
 import { Categories } from '../shared/classes/categories';
 import { Data } from '../shared/data/data';
+import { OnChanges, DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
   }
-
+  
   hideList() {
     console.log(this.categoriesArray.length);
     this.categoriesArray.splice(1);

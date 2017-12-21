@@ -28,7 +28,7 @@ export class EditInfoComponent implements OnInit, CanDeactivateGuard {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf();
     const date = new Date(this.userInformation.dateBirthday);
-    console.log(today);
+    // console.log(today);
     if (date.valueOf() >= today) {
       console.log('Неверная дата');
       return false;
@@ -39,11 +39,10 @@ export class EditInfoComponent implements OnInit, CanDeactivateGuard {
   onSubmit() {
     if (this.checkDate()) {
       this.saved = true;
-      console.log('Edited');
-      console.log(this.userInformation);
-      console.log(this.userInformation._links['self']['href']);
+      // console.log(this.userInformation);
+      // console.log(this.userInformation._links['self']['href']);
       this.router.navigate(['/cabinet/info']);
-      // this.userService.updateUserInfo(this.userInformation._links['self']['href']).subscribe(
+      // this.userService.updateUserInfo(this.userInformation._links['self']['href'], this.userInformation).subscribe(
       //   res => console.log(res),
       //   error => console.log(error)
       // );

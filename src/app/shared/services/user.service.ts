@@ -24,9 +24,9 @@ export class UserService {
     return userInfo;
   }
 
-  updateUserInfo(url: string) {
+  updateUserInfo(url: string, user) {
     const options = this.createHeader();
-    return this.http.put(url, options)
+    return this.http.put(url, user, options)
       .catch(this.handleError);
   }
 

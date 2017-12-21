@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../shared/services/categories.service';
 import { Category } from '../shared/classes/category';
 import { Data } from '../shared/data/data';
+import { OnChanges, DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-home',

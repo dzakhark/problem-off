@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   request;
   requestIntervalTime = 10000;
+  startErrorTime = 2000;
   errorRequestIntervalTime = 2000;
 
   constructor(private service: CategoriesService) { }
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
     this.service.getCategories(this.data.apiLinks.user.getCategories).subscribe(
         categories => {
           this.request = setTimeout(() => this.getCategories(), this.requestIntervalTime);
+          this.errorRequestIntervalTime = this.startErrorTime;
           console.log(new Date());
           this.categories = categories;
           const array: Category[] = [];

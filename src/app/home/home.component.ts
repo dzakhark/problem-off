@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CategoriesService } from '../shared/services/categories.service';
 import { Category } from '../shared/classes/category';
 import { Data } from '../shared/data/data';
-import { OnChanges, DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +14,12 @@ export class HomeComponent implements OnInit {
   categoriesArray = [];
   categories: Category[];
   errorMessage: string;
+  request;
+  requestIntervalTime = 10000;
+  errorRequestIntervalTime = 2000;
 
   constructor(private service: CategoriesService) { }
+
   ngOnInit() {
     this.getCategories();
   }
@@ -32,18 +35,35 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  doError() {
+    this.data.apiLinks.user.getCategories = this.data.apiLinks.user.getCategories + 'aaa';
+    console.log(this.data.apiLinks.user.getCategories);
+  }
+
+  fixError() {
+    this.data.apiLinks.user.getCategories = this.data.apiLinks.user.getCategories.slice(0, -3);
+    console.log(this.data.apiLinks.user.getCategories);
+  }
+
   getCategories() {
     this.service.getCategories(this.data.apiLinks.user.getCategories).subscribe(
         categories => {
+          this.request = setTimeout(() => this.getCategories(), this.requestIntervalTime);
+          console.log(new Date());
           this.categories = categories;
           const array: Category[] = [];
           for (let i = 0; i < categories.length; i++) {
             array.push(categories[i]);
           }
           this.categoriesArray[0] = array;
-          // console.log(this.categories[0]);
         },
-        error => this.errorMessage = error
+        error => {
+          console.log('Time of error: ' + new Date());
+          clearTimeout(this.request);
+          this.request = setInterval(() => this.getCategories(), this.errorRequestIntervalTime);
+          this.errorRequestIntervalTime *= Math.E;
+          this.errorMessage = error;
+        }
     );
   }
 
